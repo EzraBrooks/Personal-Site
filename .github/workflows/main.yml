@@ -15,6 +15,10 @@ jobs:
       - uses: webfactory/ssh-agent@v0.1.1
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+      - name: Configure Git
+        run: |
+          git config --global user.email "ezra.m.brooks@gmail.com"
+          git config --global user.name "Ezra Brooks"
       # retrieved from https://github.com/actions/cache/blob/master/examples.md#node---yarn
       - name: Get yarn cache
         id: yarn-cache
