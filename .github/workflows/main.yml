@@ -53,6 +53,7 @@ jobs:
         working-directory: ./build
         run: |
           git add -A
+          ls -axl
           git commit -m "Update from source"
 
       - name: Git push
