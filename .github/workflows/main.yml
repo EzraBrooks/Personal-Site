@@ -50,10 +50,12 @@ jobs:
         run: yarn build
 
       - name: Add and commit changes
+        working-directory: ./build
         run: |
           git add -A
           git commit -m "Update from source"
 
       - name: Git push
+        working-directory: ./build
         run: git push
         if: github.ref == 'master'
