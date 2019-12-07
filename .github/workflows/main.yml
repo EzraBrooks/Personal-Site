@@ -31,7 +31,9 @@ jobs:
         run: yarn test
 
       - name: Save private key secret
-        run: echo $DEPLOY_KEY > ~/.ssh/id_rsa
+        run: |
+          mkdir ~/.ssh
+          echo $DEPLOY_KEY > ~/.ssh/id_rsa
 
       - name: Git clone Pages repo
         run: git clone git@github.com:EzraBrooks/EzraBrooks.github.io.git build
