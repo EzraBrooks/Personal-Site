@@ -52,7 +52,7 @@ jobs:
       - name: Add and commit changes
         working-directory: ./build
         run: |
-          git add -A
+          git add .
           ls -axl
           git commit -m "Update from source"
 
