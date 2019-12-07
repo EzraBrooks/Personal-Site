@@ -38,24 +38,27 @@ jobs:
         run: yarn test
 
       - name: Git clone Pages repo
-        run: git clone git@github.com:EzraBrooks/EzraBrooks.github.io.git build
+        run: git clone git@github.com:EzraBrooks/EzraBrooks.github.io.git pages
 
-      - name: Remove contents of build folder
+      - name: Remove contents of pages folder
         run: |
-          rm -rf build/*
-          rm build/.nojekyll
+          rm -rf pages/*
+          rm pages/.nojekyll
 
       - name: Yarn build
         run: yarn build
 
+      - name: Copy build output
+        run: cp -r build/* pages/
+
       - name: Add and commit changes
-        working-directory: ./build
+        working-directory: ./pages
         run: |
           git add .
           ls -axl
           git commit -m "Update from source"
 
       - name: Git push
-        working-directory: ./build
+        working-directory: ./pages
         run: git push
         if: github.ref == 'master'
