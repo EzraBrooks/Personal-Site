@@ -42,9 +42,8 @@ jobs:
 
       - name: Remove contents of build folder
         run: |
-          shopt -u dotglob
           rm -rf build/*
-          shopt -s dotglob
+          rm build/.nojekyll
 
       - name: Yarn build
         run: yarn build
