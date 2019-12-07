@@ -1,26 +1,21 @@
-import React from 'react';
-import './App.scss';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import styled from 'styled-components';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Resume = styled(ReactMarkdown)`
+  width: 60ch;
+  margin: auto;
+`
+
+const App: React.FC<{}> = () => {
+  const [markdown, setMarkdown] = useState('')
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(require('./resume.md'));
+      setMarkdown(await response.text())
+    })();
+  })
+  return <Resume source={markdown}></Resume>;
 }
 
 export default App;
