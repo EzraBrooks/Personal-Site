@@ -48,7 +48,7 @@ jobs:
         run: yarn build
 
       - name: Copy build output
-        run: cp -r build/* pages/
+        run: cp -rT build pages
 
       - name: Add and commit changes
         working-directory: ./pages
