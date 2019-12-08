@@ -44,7 +44,7 @@ jobs:
         working-directory: ./pages
         run: |
           shopt -s dotglob extglob
-          rm -rf !(.git)
+          rm -rf ./!(.git)
           shopt -u dotglob extglob
 
       - name: Yarn build
