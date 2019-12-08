@@ -1,27 +1,25 @@
-import React, { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import styled from "styled-components";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
-
-const Resume = styled(ReactMarkdown)`
-  width: 60ch;
-  margin: auto;
-`;
+import Portfolio from "./pages/Portfolio";
+import Resume from "./pages/Resume";
 
 const App: React.FC<{}> = () => {
-  const [markdown, setMarkdown] = useState("");
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(require("./resume.md"));
-      setMarkdown(await response.text());
-    })();
-  });
   return (
     <>
-      <Header>
-        <h1>Ezra Brooks</h1>
-      </Header>
-      <Resume source={markdown} />
+      <Router>
+        <Header>
+          <h1>Ezra Brooks</h1>
+        </Header>
+        <Switch>
+          <Route exact path="/">
+            <Portfolio />
+          </Route>
+          <Route path="/resume">
+            <Resume />
+          </Route>
+        </Switch>
+      </Router>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -21,6 +22,7 @@ const Navigation = styled.div`
     padding: 0;
     list-style-type: none;
     li {
+      color: white;
       padding-top: 0.25rem;
       padding-bottom: 0.25rem;
       width: 20%;
@@ -28,6 +30,7 @@ const Navigation = styled.div`
       display: inline-block;
       :hover {
         background-color: #14456e;
+        color: #ccc;
       }
     }
   }
@@ -39,8 +42,12 @@ const Header: React.FC<{}> = ({ children }) => (
     <Navigation>
       <Inner>
         <ul>
-          <li>test</li>
-          <li>test2</li>
+          <Link to="/">
+            <li>Portfolio</li>
+          </Link>
+          <Link to="/resume">
+            <li>Resume/CV</li>
+          </Link>
         </ul>
       </Inner>
     </Navigation>
