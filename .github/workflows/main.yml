@@ -42,10 +42,7 @@ jobs:
 
       - name: Remove contents of pages folder
         working-directory: ./pages
-        run: |
-          shopt -s dotglob extglob
-          rm -rf ./!(.git)
-          shopt -uq dotglob extglob
+        run: git rm -r .
 
       - name: Yarn build
         run: yarn build
