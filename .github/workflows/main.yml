@@ -41,9 +41,11 @@ jobs:
         run: git clone git@github.com:EzraBrooks/EzraBrooks.github.io.git pages
 
       - name: Remove contents of pages folder
+        working-directory: ./pages
         run: |
-          rm -rf pages/*
-          rm pages/.nojekyll
+          shopt -s dotglob extglob
+          rm -rf !(.git)
+          shopt -u dotglob extglob
 
       - name: Yarn build
         run: yarn build
