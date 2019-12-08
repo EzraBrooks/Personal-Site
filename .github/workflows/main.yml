@@ -45,7 +45,7 @@ jobs:
         run: |
           shopt -s dotglob extglob
           rm -rf ./!(.git)
-          shopt -u dotglob extglob
+          shopt -uq dotglob extglob
 
       - name: Yarn build
         run: yarn build
