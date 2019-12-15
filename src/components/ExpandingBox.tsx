@@ -1,20 +1,23 @@
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 const ExpandingBox: React.FC<{}> = () => {
   const [expanded, setExpanded] = useState(false);
+  const divRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   return (
     <motion.div
+      ref={divRef}
       onClick={() => setExpanded(!expanded)}
       animate={{
         width: expanded ? "100vw" : 192,
         height: expanded ? "100vh" : 192,
-        position: expanded ? "absolute" : "relative",
-        top: 0,
-        left: 0
+        top: expanded ? -divRef.current.offsetTop : 0,
+        left: expanded ? -divRef.current.offsetLeft : 0
       }}
+      transition={{ duration: 0.25 }}
       style={{
-        backgroundColor: "black"
+        backgroundColor: "black",
+        position: "relative"
       }}
       initial={false}
       positionTransition
