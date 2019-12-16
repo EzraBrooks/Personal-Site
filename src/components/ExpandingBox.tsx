@@ -1,11 +1,20 @@
-import { motion } from "framer-motion";
+import { motion, MotionProps } from "framer-motion";
 import React, { useRef, useState } from "react";
 
-const ExpandingBox: React.FC<{}> = () => {
+export interface ExpandingBoxProps extends MotionProps {
+  fullscreenContent?: React.ReactNode;
+}
+
+const ExpandingBox: React.FC<ExpandingBoxProps> = ({
+  children,
+  fullscreenContent,
+  ...props
+}) => {
   const [expanded, setExpanded] = useState(false);
   const divRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   return (
     <motion.div
+      {...props}
       ref={divRef}
       onClick={() => setExpanded(!expanded)}
       animate={{
@@ -16,12 +25,13 @@ const ExpandingBox: React.FC<{}> = () => {
       }}
       transition={{ duration: 0.25 }}
       style={{
-        backgroundColor: "black",
         position: "relative"
       }}
       initial={false}
       positionTransition
-    ></motion.div>
+    >
+      {expanded && fullscreenContent ? fullscreenContent : children}
+    </motion.div>
   );
 };
 
