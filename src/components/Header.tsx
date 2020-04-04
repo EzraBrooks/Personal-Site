@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -17,23 +17,36 @@ const Inner = styled.div`
 const Navigation = styled.div`
   width: inherit;
   background-color: #13578f;
+  .active {
+    background-color: #2279bf;
+  }
   ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
     li {
       color: white;
-      padding-top: 0.25rem;
-      padding-bottom: 0.25rem;
-      width: 20%;
-      text-align: center;
-      display: inline-block;
-      :hover {
-        background-color: #14456e;
-        color: #ccc;
-      }
+      display: inline;
     }
   }
+`;
+
+const NavigationLink = styled(NavLink)`
+  &,
+  &:hover,
+  &:active,
+  &:visited {
+    color: white;
+  }
+  &:hover {
+    background-color: #14456e;
+    color: #ccc;
+  }
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  width: 20%;
+  text-align: center;
+  display: inline-block;
 `;
 
 const Header: React.FC<{}> = ({ children }) => (
@@ -42,12 +55,16 @@ const Header: React.FC<{}> = ({ children }) => (
     <Navigation>
       <Inner>
         <ul>
-          <Link to="/">
-            <li>Portfolio</li>
-          </Link>
-          <Link to="/resume">
-            <li>Resume/CV</li>
-          </Link>
+          <li>
+            <NavigationLink exact to="/" activeClassName="active">
+              Portfolio
+            </NavigationLink>
+          </li>
+          <li>
+            <NavigationLink exact to="/resume" activeClassName="active">
+              Resume/CV
+            </NavigationLink>
+          </li>
         </ul>
       </Inner>
     </Navigation>

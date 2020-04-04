@@ -10,6 +10,7 @@ const Background = styled.div`
   justify-content: flex-end;
   flex-direction: column;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  padding-left: 2ch;
 `;
 
 const CardTitle: React.FC<{}> = ({ children }) => (
