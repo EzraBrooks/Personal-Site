@@ -34,7 +34,7 @@ jobs:
         run: yarn build && yarn export
 
       - name: Copy build output
-        run: cp -rT export pages
+        run: cp -rT out pages
 
       - name: Add and commit changes
         working-directory: ./pages
