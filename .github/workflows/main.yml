@@ -20,6 +20,9 @@ jobs:
           git config --global user.email "ezra.m.brooks@gmail.com"
           git config --global user.name "Ezra Brooks"
 
+      - name: Remove any existing pages folder
+        run: git rm -rf pages
+
       - name: Git clone Pages repo
         run: git clone git@github.com:EzraBrooks/EzraBrooks.github.io.git pages
 
